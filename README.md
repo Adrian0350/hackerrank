@@ -13,6 +13,7 @@ To run `NodeJS` scripts you'll need to have `NodeJS` installed in your system.
 All `NodeJS` scripts will be slightly modified with a block of code* to make it `CLI` executable due to the fact that the original scripts do not receive a `SIGINT` signal when in `CLI`.
 
 Code Block:
+
 ``
     process.on('SIGINT', function () {
         input_stdin_array = input_stdin.split('\n')
