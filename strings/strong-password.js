@@ -26,21 +26,24 @@ function readLine() {
 
 function minimumNumber(n, password)
 {
-	let min_length         = 6
 	let numbers            = '0123456789'
 	let lower_case         = 'abcdefghijklmnopqrstuvwxyz'
 	let upper_case         = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	let special_characters = '!@#$%^&*()-+'
 
+	let min_length         = 6
+	let min_by_rule        = 0
+	let incomplete         = 0
+
 	if (password.length < min_length)
-		return min_length - password.length
+		incomplete = min_length - password.length
 
-	let needs_numbers            = +(!numbers.split('').map(number => password.includes(number) || '').join(''))
-	let needs_lower_case         = +(!lower_case.split('').map(char => password.includes(char) || '').join(''))
-	let needs_upper_case         = +(!upper_case.split('').map(char => password.includes(char) || '').join(''))
-	let needs_special_characters = +(!special_characters.split('').map(char => password.includes(char) || '').join(''))
+	min_by_rule += +(!numbers.split('').map(number => password.includes(number) || '').join(''))
+	min_by_rule += +(!lower_case.split('').map(char => password.includes(char) || '').join(''))
+	min_by_rule += +(!upper_case.split('').map(char => password.includes(char) || '').join(''))
+	min_by_rule += +(!special_characters.split('').map(char => password.includes(char) || '').join(''))
 
-	return needs_numbers + needs_lower_case + needs_upper_case + needs_special_characters
+	return incomplete < min_by_rule ? min_by_rule : incomplete
 }
 
 function main()
@@ -48,8 +51,6 @@ function main()
 	var n        = parseInt(readLine())
 	var password = readLine()
 	var answer   = minimumNumber(n, password)
-
-	console.log(password);
 
 	process.stdout.write(answer + '\n')
 }
