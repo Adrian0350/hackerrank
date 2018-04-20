@@ -24,5 +24,7 @@ Code Block:
 ## NodeJS Usage Example:
 
 `$ node strong-password.js`
+
 `$ 5`
+
 `$ #Hell`
