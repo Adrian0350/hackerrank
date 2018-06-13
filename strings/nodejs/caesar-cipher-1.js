@@ -24,28 +24,31 @@ function readLine() {
 }
 
 // Complete the caesarCipher function below.
-function caesarCipher(string, spaces) {
-	let alphabet         = 'abcdefghijklmnopqrstuvwxyz'
-	let encrypted_string = ''
-
-	string.split('').map((char, index) => {
+function caesarCipher(string, sequence) {
+	return string.split('').map(char => {
 		if (!(/[A-Za-z]/.test(char)))
 		{
-			encrypted_string += char
-			continue
+			return char
 		}
 
-		encrypted_string = 
-	})
-	return [s, k]
+		let alphabet = (/[A-Z]/.test(char)) ? 'abcdefghijklmnopqrstuvwxyz'.toUpperCase() : 'abcdefghijklmnopqrstuvwxyz'
+		let rotation = alphabet.indexOf(char) + sequence
+
+		if (rotation > alphabet.length)
+		{
+			rotation = rotation - alphabet.length
+		}
+
+		return alphabet.substr(rotation, 1)
+	}).join('')
 }
 
 function main() {
-	const string_length = readLine()
-	const string        = readLine()
-	const spaces        = parseInt(readLine(), 10)
+	const strlen_  = readLine()
+	const string   = readLine()
+	const sequence = parseInt(readLine(), 10)
 
-	let result = caesarCipher(string, spaces)
+	let result = caesarCipher(string, sequence)
 
-	process.stdout.write("\n" + result + "\n");
+	process.stdout.write(result + "\n");
 }
