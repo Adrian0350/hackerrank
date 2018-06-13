@@ -27,7 +27,12 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function twoCharaters(s) {
-	// Complete this function
+	let instances = {}
+
+	console.log(s.split(''))
+	s.split('').map(char => instances[char] += +(!!instances.hasOwnProperty(char)))
+
+	console.log(instances)
 }
 
 function main() {
